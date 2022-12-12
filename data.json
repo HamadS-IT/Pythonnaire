@@ -1,0 +1,152 @@
+[
+    {
+        "1": "Is Python case sensitive when dealing with identifiers?",
+        "2": "What is the maximum possible length of an identifier?",
+        "3": "Which of the following is invalid?",
+        "4": "Which of the following is an invalid variable?",
+        "5": "Why are local variable names beginning with an underscore discouraged?",
+        "6": " Which of the following is not a keyword?",
+        "7": "All keywords in Python are in _________",
+        "8": "Which of the following is true for variable names in Python?",
+        "9": "Which of the following is an invalid statement?",
+        "10": "Which of the following cannot be a variable?",
+        "11": "Which of the following commands will create a list?",
+        "12": "What is the output when we execute list(“hello”)?",
+        "13": "Suppose listExample is [‘h’,’e’,’l’,’l’,’o’], what is len(listExample)?",
+        "14": "Suppose list1 is [2445,133,12454,123], what is max(list1)?",
+        "15": "Suppose list1 is [3, 5, 25, 1, 3], what is min(list1)?",
+        "16": "Suppose list1 is [1, 5, 9], what is sum(list1)?",
+        "17": "To shuffle the list(say list1) what function do we use?",
+        "18": "Suppose list1 is [4, 2, 2, 4, 5, 2, 1, 0], Which of the following is correct syntax for slicing operation?",
+        "19": "Suppose list1 is [2, 33, 222, 14, 25], What is list1[-1]?",
+        "20": "Suppose list1 is [2, 33, 222, 14, 25], What is list1[:-1]?"
+
+
+        
+    },
+    {
+        "1": [
+             "yes",
+             "no",
+             "machine dependent",
+             "none of the mentioned"
+        ],
+        "2": [
+             "31 characters",
+             "63 characters",
+             "79 characters",
+             "none of the mentioned"
+        ],
+        "3": [
+             "_a = 1",
+             "__a = 1",
+             "__str__ = 1",
+             "none of the mentioned"
+        ],
+        "4": [
+            " my_string_1",
+            " 1st_string",
+            " foo",
+            " _init-"
+        ],
+        "5": [
+             "they are used to indicate a private variables of a class",
+             "they confuse the interpreter",
+             "they are used to indicate global variables",
+             "they slow down execution"
+        ],
+        "6": [
+             "eval",
+             "assert",
+             "nonlocal",
+             "pass"
+        ],
+        "7": [
+             "lower case",
+             "UPPER CASE",
+             "Capitalized",
+             "None of the mentioned"
+        ],
+        "8": [
+             "unlimited length",
+             "all private members must have leading and trailing underscores",
+             "underscore and ampersand are the only two special characters allowed",
+             "none of the mentioned"
+            
+        ],
+        "9": [
+             "abc = 1,000,000",
+             "a b c = 1000 2000 3000",
+             "a,b,c = 1000, 2000, 3000",
+             "a_b_c = 1,000,00"
+        ],
+        "10": [
+             "__init__",
+             "in",
+             "it",
+             "on"
+        ],
+        "11": [
+            "list1 = list()",
+            "list1 = []",
+            "list1 = list([1, 2, 3])",
+            "all of the mentioned"
+       ],
+       "12": [
+             "[‘h’, ‘e’, ‘l’, ‘l’, ‘o’]",
+             "[‘hello’]",
+             "[‘llo’]",
+             "[‘olleh’]"
+       ],
+       "13": [
+         "5",
+         "4",
+         "None",
+         "Error"
+       ],
+       "14": [
+         "2445",
+         "133",
+         "12454",
+         "123"
+        
+       ],
+       "15": [
+         "3",
+         "5",
+         "25",
+         "1"
+       ],
+       "16": [
+         "1",
+         "9",
+         "15",
+         "Error"
+       ],
+       "17": [
+         "list1.shuffle()",
+         "shuffle(list1)",
+         "random.shuffle(list1)",
+         "random.shuffleList(list1)"
+       ],
+       "18": [
+         "print(list1[0])",
+         "print(list1[:2])",
+         "print(list1[:-2])",
+         "all of the mentioned"
+           
+       ],
+       "19": [
+         "Error",
+         "None",
+         "25",
+         "2"
+       ],
+       "20": [
+         "[2, 33, 222, 14]",
+         "Error",
+         "25",
+         "[25, 14, 222, 33, 2]"
+       ]
+    }
+]

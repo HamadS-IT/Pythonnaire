@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pythonnaire.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* a11y-dark theme */
+/* Based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css */
+/* @author: ericwbailey */
+
+/* Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #d4d0ab;
+}
+
+/* Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #ffa07a;
+}
+
+/* Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #f5ab35;
+}
+
+/* Yellow */
+.hljs-attribute {
+  color: #ffd700;
+}
+
+/* Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #abe338;
+}
+
+/* Blue */
+.hljs-title,
+.hljs-section {
+  color: #00e0e0;
+}
+
+/* Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #dcc6e0;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #2b2b2b;
+  color: #f8f8f2;
+  padding: 0.5em;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+@media screen and (-ms-high-contrast: active) {
+  .hljs-addition,
+  .hljs-attribute,
+  .hljs-built_in,
+  .hljs-builtin-name,
+  .hljs-bullet,
+  .hljs-comment,
+  .hljs-link,
+  .hljs-literal,
+  .hljs-meta,
+  .hljs-number,
+  .hljs-params,
+  .hljs-string,
+  .hljs-symbol,
+  .hljs-type,
+  .hljs-quote {
+        color: highlight;
+    }
+
+    .hljs-keyword,
+    .hljs-selector-tag {
+        font-weight: bold;
+    }
+}
+
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="pythonnaire-documentation"><strong>PYTHONNAIRE DOCUMENTATION</strong></h1>
+<h2 id="a-simple-quiz-app"><em>A Simple Quiz App</em></h2>
+<h3 id="programming-language-used">Programming Language Used</h3>
+<ul>
+<li>Python</li>
+</ul>
+<h3 id="python-modules-used">Python Modules Used</h3>
+<ul>
+<li>json</li>
+<li>tkinter</li>
+<li>pillow</li>
+<li>random</li>
+</ul>
+<p>A simple single page quiz app developed using above mentioned programming language and modules.This app demonstrates all basic programming concepts such as variables , control structures , loops , data structures of python (List,Dictionary) , file handling , handling json data etc. This app contains a simple UI and a simple backend.</p>
+<h3 id="app-screenshots">App Screenshots</h3>
+<p><img src="SS1.png" alt="Image1"><br>
+<img src="SS2.png" alt="Image2"><br>
+<img src="SS3.png" alt="Image3"></p>
+<h3 id="installing-modules-for-linuxmac">Installing Modules for Linux/Mac</h3>
+<pre class="hljs"><code><div>sudo apt-get install python3-tk
+sudo apt-get install python3-pil python3-pil.imagetk
+pip3 install pillow
+
+</div></code></pre>
+<h3 id="installing-modules-for-windows">Installing Modules for Windows</h3>
+<pre class="hljs"><code><div>pip install pillow
+
+</div></code></pre>
+<h3 id="installing-fonts">Installing Fonts</h3>
+<p>Please install the Fonts provided in the project folder for a better Looking Ui.</p>
+<ul>
+<li>Autography.otf</li>
+<li>BebasNeue-Regular.ttf</li>
+</ul>
+<h3 id="code">Code</h3>
+<p><em>Importing the required modules</em></p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">import</span> tkinter
+<span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> *
+<span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> ImageTk, Image
+<span class="hljs-keyword">import</span> random
+
+</div></code></pre>
+<p><em>Reading multiple choice questions from data.json file and storing the questions and answers of the questions in 2 different lists . Defining an empty list to store the answers that the user will choose.</em></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span> open(<span class="hljs-string">'data.json'</span>, encoding=<span class="hljs-string">"utf8"</span>) <span class="hljs-keyword">as</span> f:
+    data = json.load(f)
+questions = [v <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> data[<span class="hljs-number">0</span>].values()]
+answers_choice = [v <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> data[<span class="hljs-number">1</span>].values()]
+answers = [<span class="hljs-number">0</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">3</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">0</span>]
+user_answer = []
+</div></code></pre>
+<p><em>Function which will generate 10 random numbers which will then be used to display random questions from the data.json file</em></p>
+<pre class="hljs"><code><div>indexes = []
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gen</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">global</span> indexes
+    <span class="hljs-keyword">while</span>(len(indexes) &lt; <span class="hljs-number">10</span>):
+        x = random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">19</span>)
+        <span class="hljs-keyword">if</span> x <span class="hljs-keyword">in</span> indexes:
+            <span class="hljs-keyword">continue</span>
+        <span class="hljs-keyword">else</span>:
+            indexes.append(x)
+</div></code></pre>
+<p><em>Creating the GUI application main window with basic configurations</em></p>
+<pre class="hljs"><code><div>root = tkinter.Tk()
+root.title(<span class="hljs-string">"PYTHONNAIRE"</span>)
+root.geometry(<span class="hljs-string">"700x600"</span>)
+root.config(background=<span class="hljs-string">"#ffffff"</span>)
+root.resizable(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)
+</div></code></pre>
+<p><strong>Front Page UI</strong><br>
+<em>Displaying Logo on the Front Page</em></p>
+<pre class="hljs"><code><div>img1=Image.open(<span class="hljs-string">"Logo.png"</span>)
+img1=img1.resize((<span class="hljs-number">170</span>,<span class="hljs-number">130</span>), Image.ANTIALIAS)
+img1 = ImageTk.PhotoImage(img1)
+
+labelimage = Label(
+    root,
+    image = img1,
+    background = <span class="hljs-string">"#ffffff"</span>,
+)
+labelimage.pack(pady=(<span class="hljs-number">40</span>,<span class="hljs-number">0</span>))
+</div></code></pre>
+<p><em>Displaying the name of the App</em></p>
+<pre class="hljs"><code><div>labeltext = Label(
+    root,
+    text = <span class="hljs-string">"Pythonnaire"</span>,
+    font = (<span class="hljs-string">"Autography"</span>,<span class="hljs-number">30</span>,<span class="hljs-string">"bold"</span>),
+    background = <span class="hljs-string">"#ffffff"</span>,
+    foreground=<span class="hljs-string">"#FFD43B"</span>
+)
+labeltext.pack(pady=(<span class="hljs-number">0</span>,<span class="hljs-number">50</span>))
+</div></code></pre>
+<p><em>Displaying the Start Button</em></p>
+<pre class="hljs"><code><div>btnStart = Button(
+    root,
+    text = <span class="hljs-string">'START'</span>,
+    height = <span class="hljs-number">2</span>,
+    width = <span class="hljs-number">8</span>,
+    border = <span class="hljs-number">0</span>,
+    background = <span class="hljs-string">"#306998"</span>,
+    foreground = <span class="hljs-string">"#FFD43B"</span>,
+    activebackground=<span class="hljs-string">"#FFD43B"</span>,
+    activeforeground=<span class="hljs-string">"#306998"</span>,
+    font = (<span class="hljs-string">"Bebas Neue"</span>,<span class="hljs-number">14</span>),
+    command = startIspressed,
+)
+btnStart.pack()
+</div></code></pre>
+<p><em>Displaying the Label text after the button</em></p>
+<pre class="hljs"><code><div>lblInstruction = Label(
+    root,
+    text = <span class="hljs-string">"Read The Rules And\nClick Start Once You Are ready"</span>,
+    background = <span class="hljs-string">"#ffffff"</span>,
+    foreground=<span class="hljs-string">"#306998"</span>,
+    font = (<span class="hljs-string">"Bebas Neue"</span>,<span class="hljs-number">14</span>),
+    justify = <span class="hljs-string">"center"</span>,
+)
+lblInstruction.pack(pady=(<span class="hljs-number">30</span>,<span class="hljs-number">104</span>))
+
+</div></code></pre>
+<p><em>Displaying the Rules</em></p>
+<pre class="hljs"><code><div>lblRules = Label(
+    root,
+    text = <span class="hljs-string">"-&gt; This quiz contains 10 questions\n-&gt; Once you select a radio button that will be your final choice\n-&gt; So, think before you select"</span>,
+    width = <span class="hljs-number">100</span>,
+    font = (<span class="hljs-string">"Bebas Neue"</span>,<span class="hljs-number">14</span>),
+    background = <span class="hljs-string">"#306998"</span>,
+    foreground = <span class="hljs-string">"#FFD43B"</span>,
+)
+lblRules.pack()
+</div></code></pre>
+<p><em>Entering the main event loop to take action against each event triggered by the user</em></p>
+<pre class="hljs"><code><div>root.mainloop()
+</div></code></pre>
+<p><strong>Backend and Other UI Elements</strong><br>
+<em>Function which will be called when start button is pressed it will destroy all the widgets present on the front page</em></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">startIspressed</span><span class="hljs-params">()</span>:</span>
+    labelimage.destroy()
+    labeltext.destroy()
+    lblInstruction.destroy()
+    lblRules.destroy()
+    btnStart.destroy()
+    gen()
+    startquiz()
+</div></code></pre>
+<p><em>Function which will start the quiz</em></p>
+<pre class="hljs"><code><div>
+</div></code></pre>
+<p><em>Function will start the quiz and will also create the second page Ui elements in which random 10 multiple choice questions will be displayed</em></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">startquiz</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">global</span> lblQuestion,r1,r2,r3,r4
+    labeltext = Label(
+    root,
+    text = <span class="hljs-string">"Pythonnaire"</span>,
+    font = (<span class="hljs-string">"Autography"</span>,<span class="hljs-number">25</span>,<span class="hljs-string">"bold"</span>),
+    background = <span class="hljs-string">"#ffffff"</span>,
+    foreground=<span class="hljs-string">"#306998"</span>
+    )
+    labeltext.pack(anchor=<span class="hljs-string">"w"</span>,padx=<span class="hljs-number">10</span>)
+
+    lblQuestion = Label(
+        root,
+        text = questions[indexes[<span class="hljs-number">0</span>]],
+        font = (<span class="hljs-string">"Bebas Neue"</span>, <span class="hljs-number">18</span>),
+        width = <span class="hljs-number">500</span>,
+        justify = <span class="hljs-string">"center"</span>,
+        wraplength = <span class="hljs-number">400</span>,
+        background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"#306998"</span>
+    )
+    lblQuestion.pack(pady=(<span class="hljs-number">100</span>,<span class="hljs-number">30</span>))
+
+    <span class="hljs-keyword">global</span> radiovar
+    radiovar = IntVar()
+    radiovar.set(<span class="hljs-number">-1</span>)
+
+    r1 = Radiobutton(
+        root,
+        text = answers_choice[indexes[<span class="hljs-number">0</span>]][<span class="hljs-number">0</span>],
+        font = (<span class="hljs-string">"Bebas Neue"</span>, <span class="hljs-number">14</span>),
+        value = <span class="hljs-number">0</span>,
+        variable = radiovar,
+        command = selected,
+        background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"#FFD43B"</span>
+    )
+    r1.pack(pady=<span class="hljs-number">5</span>)
+
+    r2 = Radiobutton(
+        root,
+        text = answers_choice[indexes[<span class="hljs-number">0</span>]][<span class="hljs-number">1</span>],
+        font = (<span class="hljs-string">"Bebas Neue"</span>, <span class="hljs-number">14</span>),
+        value = <span class="hljs-number">1</span>,
+        variable = radiovar,
+        command = selected,
+        background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"#FFD43B"</span>
+    )
+    r2.pack(pady=<span class="hljs-number">5</span>)
+
+    r3 = Radiobutton(
+        root,
+        text = answers_choice[indexes[<span class="hljs-number">0</span>]][<span class="hljs-number">2</span>],
+        font = (<span class="hljs-string">"Bebas Neue"</span>, <span class="hljs-number">14</span>),
+        value = <span class="hljs-number">2</span>,
+        variable = radiovar,
+        command = selected,
+        background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"#FFD43B"</span>
+    )
+    r3.pack(pady=<span class="hljs-number">5</span>)
+
+    r4 = Radiobutton(
+        root,
+        text = answers_choice[indexes[<span class="hljs-number">0</span>]][<span class="hljs-number">3</span>],
+        font = (<span class="hljs-string">"Bebas Neue"</span>, <span class="hljs-number">14</span>),
+        value = <span class="hljs-number">3</span>,
+        variable = radiovar,
+        command = selected,
+        background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"#FFD43B"</span>
+    )
+    r4.pack(pady=<span class="hljs-number">5</span>)
+    lblRules = Label(
+    root,
+    text = <span class="hljs-string">"-&gt; This quiz contains 10 questions\n-&gt; Once you select a radio button that will be your final choice\n-&gt; So, think before you select"</span>,
+    width = <span class="hljs-number">100</span>,
+    font = (<span class="hljs-string">"Bebas Neue"</span>,<span class="hljs-number">14</span>),
+    background = <span class="hljs-string">"#306998"</span>,
+    foreground = <span class="hljs-string">"#FFD43B"</span>,
+    )
+    lblRules.place(relx = <span class="hljs-number">0.0</span>,
+                 rely = <span class="hljs-number">1.0</span>,
+                 anchor =<span class="hljs-string">'sw'</span>)
+
+</div></code></pre>
+<p>_Function will select a multiple choice question and will give it to the start quiz function to display _</p>
+<pre class="hljs"><code><div>ques = <span class="hljs-number">1</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">selected</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">global</span> radiovar,user_answer
+    <span class="hljs-keyword">global</span> lblQuestion,r1,r2,r3,r4
+    <span class="hljs-keyword">global</span> ques
+    x = radiovar.get()
+    user_answer.append(x)
+    radiovar.set(<span class="hljs-number">-1</span>)
+    <span class="hljs-keyword">if</span> ques &lt; <span class="hljs-number">10</span>:
+        lblQuestion.config(text= questions[indexes[ques]])
+        r1[<span class="hljs-string">'text'</span>] = answers_choice[indexes[ques]][<span class="hljs-number">0</span>]
+        r2[<span class="hljs-string">'text'</span>] = answers_choice[indexes[ques]][<span class="hljs-number">1</span>]
+        r3[<span class="hljs-string">'text'</span>] = answers_choice[indexes[ques]][<span class="hljs-number">2</span>]
+        r4[<span class="hljs-string">'text'</span>] = answers_choice[indexes[ques]][<span class="hljs-number">3</span>]
+        ques += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">else</span>:
+        calc()
+</div></code></pre>
+<p><em>Function will calculate the score of the user</em></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">calc</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">global</span> indexes,user_answer,answers
+    x = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">global</span> score
+    score = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> indexes:
+        <span class="hljs-keyword">if</span> user_answer[x] == answers[i]:
+            score = score + <span class="hljs-number">10</span>
+        x += <span class="hljs-number">1</span>
+    print(score)
+    showresult(score)
+</div></code></pre>
+<p>_Function will display the Result of the user and will also create result page UI elements _</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">showresult</span><span class="hljs-params">(score)</span>:</span>
+    lblQuestion.destroy()
+    r1.destroy()
+    r2.destroy()
+    r3.destroy()
+    r4.destroy()
+    labelimage = Label(
+        root,
+        background = <span class="hljs-string">"blue"</span>,
+        border = <span class="hljs-number">0</span>,
+    )
+    labelimage.pack(pady=(<span class="hljs-number">50</span>,<span class="hljs-number">30</span>))
+    labelresulttext = Label(
+        root,
+        font = (<span class="hljs-string">"Bebas Neue"</span>,<span class="hljs-number">20</span>),
+        background = <span class="hljs-string">"#ffffff"</span>,
+    )
+    labelresulttext.pack()
+    <span class="hljs-keyword">if</span> score &gt;= <span class="hljs-number">80</span>:
+        img = PhotoImage(file=<span class="hljs-string">"great.png"</span>)
+        labelimage.configure(image=img)
+        labelimage.image = img
+        labelresulttext.configure(text=<span class="hljs-string">f"Excellent !!! Your Score is : <span class="hljs-subst">{score}</span>/100"</span>,background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"green"</span>,font = (<span class="hljs-string">"Autography"</span>,<span class="hljs-number">24</span>,<span class="hljs-string">"bold"</span>),)
+    <span class="hljs-keyword">elif</span> (score &gt;= <span class="hljs-number">50</span> <span class="hljs-keyword">and</span> score &lt; <span class="hljs-number">80</span>):
+        img = PhotoImage(file=<span class="hljs-string">"ok.png"</span>)
+        labelimage.configure(image=img)
+        labelimage.image = img
+        labelresulttext.configure(text=<span class="hljs-string">f"You Can Be Better !!! Your Score is : <span class="hljs-subst">{score}</span>/100"</span>,background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"#FFD43B"</span>,font = (<span class="hljs-string">"Autography"</span>,<span class="hljs-number">24</span>,<span class="hljs-string">"bold"</span>),)
+    <span class="hljs-keyword">else</span>:
+        img = PhotoImage(file=<span class="hljs-string">"bad.png"</span>)
+        labelimage.image = img
+        labelimage.configure(image=img)
+        labelresulttext.configure(text=<span class="hljs-string">f"You Should Work Hard !!! Your Score is : <span class="hljs-subst">{score}</span>/100"</span>,background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"Red"</span>,font = (<span class="hljs-string">"Autography"</span>,<span class="hljs-number">24</span>,<span class="hljs-string">"bold"</span>),)
+</div></code></pre>
+<h3 id="full-pythonnaire-app-source-code">Full Pythonnaire App Source Code</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">import</span> tkinter
+<span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> *
+<span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> ImageTk, Image
+<span class="hljs-keyword">import</span> random
+
+
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">'data.json'</span>, encoding=<span class="hljs-string">"utf8"</span>) <span class="hljs-keyword">as</span> f:
+    data = json.load(f)
+
+
+questions = [v <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> data[<span class="hljs-number">0</span>].values()]
+answers_choice = [v <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> data[<span class="hljs-number">1</span>].values()]
+
+answers = [<span class="hljs-number">0</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">3</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">0</span>]
+
+user_answer = []
+
+indexes = []
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gen</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">global</span> indexes
+    <span class="hljs-keyword">while</span>(len(indexes) &lt; <span class="hljs-number">10</span>):
+        x = random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">19</span>)
+        <span class="hljs-keyword">if</span> x <span class="hljs-keyword">in</span> indexes:
+            <span class="hljs-keyword">continue</span>
+        <span class="hljs-keyword">else</span>:
+            indexes.append(x)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">showresult</span><span class="hljs-params">(score)</span>:</span>
+    lblQuestion.destroy()
+    r1.destroy()
+    r2.destroy()
+    r3.destroy()
+    r4.destroy()
+    labelimage = Label(
+        root,
+        background = <span class="hljs-string">"blue"</span>,
+        border = <span class="hljs-number">0</span>,
+    )
+    labelimage.pack(pady=(<span class="hljs-number">50</span>,<span class="hljs-number">30</span>))
+    labelresulttext = Label(
+        root,
+        font = (<span class="hljs-string">"Bebas Neue"</span>,<span class="hljs-number">20</span>),
+        background = <span class="hljs-string">"#ffffff"</span>,
+    )
+    labelresulttext.pack()
+    <span class="hljs-keyword">if</span> score &gt;= <span class="hljs-number">80</span>:
+        img = PhotoImage(file=<span class="hljs-string">"great.png"</span>)
+        labelimage.configure(image=img)
+        labelimage.image = img
+        labelresulttext.configure(text=<span class="hljs-string">f"Excellent !!! Your Score is : <span class="hljs-subst">{score}</span>/100"</span>,background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"green"</span>,font = (<span class="hljs-string">"Autography"</span>,<span class="hljs-number">24</span>,<span class="hljs-string">"bold"</span>),)
+    <span class="hljs-keyword">elif</span> (score &gt;= <span class="hljs-number">50</span> <span class="hljs-keyword">and</span> score &lt; <span class="hljs-number">80</span>):
+        img = PhotoImage(file=<span class="hljs-string">"ok.png"</span>)
+        labelimage.configure(image=img)
+        labelimage.image = img
+        labelresulttext.configure(text=<span class="hljs-string">f"You Can Be Better !!! Your Score is : <span class="hljs-subst">{score}</span>/100"</span>,background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"#FFD43B"</span>,font = (<span class="hljs-string">"Autography"</span>,<span class="hljs-number">24</span>,<span class="hljs-string">"bold"</span>),)
+    <span class="hljs-keyword">else</span>:
+        img = PhotoImage(file=<span class="hljs-string">"bad.png"</span>)
+        labelimage.image = img
+        labelimage.configure(image=img)
+        labelresulttext.configure(text=<span class="hljs-string">f"You Should Work Hard !!! Your Score is : <span class="hljs-subst">{score}</span>/100"</span>,background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"Red"</span>,font = (<span class="hljs-string">"Autography"</span>,<span class="hljs-number">24</span>,<span class="hljs-string">"bold"</span>),)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">calc</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">global</span> indexes,user_answer,answers
+    x = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">global</span> score
+    score = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> indexes:
+        <span class="hljs-keyword">if</span> user_answer[x] == answers[i]:
+            score = score + <span class="hljs-number">10</span>
+        x += <span class="hljs-number">1</span>
+    <span class="hljs-comment"># print(score)</span>
+    showresult(score)
+
+
+ques = <span class="hljs-number">1</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">selected</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">global</span> radiovar,user_answer
+    <span class="hljs-keyword">global</span> lblQuestion,r1,r2,r3,r4
+    <span class="hljs-keyword">global</span> ques
+    x = radiovar.get()
+    user_answer.append(x)
+    radiovar.set(<span class="hljs-number">-1</span>)
+    <span class="hljs-keyword">if</span> ques &lt; <span class="hljs-number">10</span>:
+        lblQuestion.config(text= questions[indexes[ques]])
+        r1[<span class="hljs-string">'text'</span>] = answers_choice[indexes[ques]][<span class="hljs-number">0</span>]
+        r2[<span class="hljs-string">'text'</span>] = answers_choice[indexes[ques]][<span class="hljs-number">1</span>]
+        r3[<span class="hljs-string">'text'</span>] = answers_choice[indexes[ques]][<span class="hljs-number">2</span>]
+        r4[<span class="hljs-string">'text'</span>] = answers_choice[indexes[ques]][<span class="hljs-number">3</span>]
+        ques += <span class="hljs-number">1</span>
+    <span class="hljs-keyword">else</span>:
+        calc()
+
+
+
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">startquiz</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">global</span> lblQuestion,r1,r2,r3,r4
+    labeltext = Label(
+    root,
+    text = <span class="hljs-string">"Pythonnaire"</span>,
+    font = (<span class="hljs-string">"Autography"</span>,<span class="hljs-number">25</span>,<span class="hljs-string">"bold"</span>),
+    background = <span class="hljs-string">"#ffffff"</span>,
+    foreground=<span class="hljs-string">"#306998"</span>
+    )
+    labeltext.pack(anchor=<span class="hljs-string">"w"</span>,padx=<span class="hljs-number">10</span>)
+
+    lblQuestion = Label(
+        root,
+        text = questions[indexes[<span class="hljs-number">0</span>]],
+        font = (<span class="hljs-string">"Bebas Neue"</span>, <span class="hljs-number">18</span>),
+        width = <span class="hljs-number">500</span>,
+        justify = <span class="hljs-string">"center"</span>,
+        wraplength = <span class="hljs-number">400</span>,
+        background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"#306998"</span>
+    )
+    lblQuestion.pack(pady=(<span class="hljs-number">100</span>,<span class="hljs-number">30</span>))
+
+    <span class="hljs-keyword">global</span> radiovar
+    radiovar = IntVar()
+    radiovar.set(<span class="hljs-number">-1</span>)
+
+    r1 = Radiobutton(
+        root,
+        text = answers_choice[indexes[<span class="hljs-number">0</span>]][<span class="hljs-number">0</span>],
+        font = (<span class="hljs-string">"Bebas Neue"</span>, <span class="hljs-number">14</span>),
+        value = <span class="hljs-number">0</span>,
+        variable = radiovar,
+        command = selected,
+        background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"#FFD43B"</span>
+    )
+    r1.pack(pady=<span class="hljs-number">5</span>)
+
+    r2 = Radiobutton(
+        root,
+        text = answers_choice[indexes[<span class="hljs-number">0</span>]][<span class="hljs-number">1</span>],
+        font = (<span class="hljs-string">"Bebas Neue"</span>, <span class="hljs-number">14</span>),
+        value = <span class="hljs-number">1</span>,
+        variable = radiovar,
+        command = selected,
+        background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"#FFD43B"</span>
+    )
+    r2.pack(pady=<span class="hljs-number">5</span>)
+
+    r3 = Radiobutton(
+        root,
+        text = answers_choice[indexes[<span class="hljs-number">0</span>]][<span class="hljs-number">2</span>],
+        font = (<span class="hljs-string">"Bebas Neue"</span>, <span class="hljs-number">14</span>),
+        value = <span class="hljs-number">2</span>,
+        variable = radiovar,
+        command = selected,
+        background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"#FFD43B"</span>
+    )
+    r3.pack(pady=<span class="hljs-number">5</span>)
+
+    r4 = Radiobutton(
+        root,
+        text = answers_choice[indexes[<span class="hljs-number">0</span>]][<span class="hljs-number">3</span>],
+        font = (<span class="hljs-string">"Bebas Neue"</span>, <span class="hljs-number">14</span>),
+        value = <span class="hljs-number">3</span>,
+        variable = radiovar,
+        command = selected,
+        background = <span class="hljs-string">"#ffffff"</span>,
+        foreground=<span class="hljs-string">"#FFD43B"</span>
+    )
+    r4.pack(pady=<span class="hljs-number">5</span>)
+    lblRules = Label(
+    root,
+    text = <span class="hljs-string">"-&gt; This quiz contains 10 questions\n-&gt; Once you select a radio button that will be your final choice\n-&gt; So, think before you select"</span>,
+    width = <span class="hljs-number">100</span>,
+    font = (<span class="hljs-string">"Bebas Neue"</span>,<span class="hljs-number">14</span>),
+    background = <span class="hljs-string">"#306998"</span>,
+    foreground = <span class="hljs-string">"#FFD43B"</span>,
+    )
+    lblRules.place(relx = <span class="hljs-number">0.0</span>,
+                 rely = <span class="hljs-number">1.0</span>,
+                 anchor =<span class="hljs-string">'sw'</span>)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">startIspressed</span><span class="hljs-params">()</span>:</span>
+    labelimage.destroy()
+    labeltext.destroy()
+    lblInstruction.destroy()
+    lblRules.destroy()
+    btnStart.destroy()
+    gen()
+    startquiz()
+
+
+
+root = tkinter.Tk()
+root.title(<span class="hljs-string">"PYTHONNAIRE"</span>)
+root.geometry(<span class="hljs-string">"700x600"</span>)
+root.config(background=<span class="hljs-string">"#ffffff"</span>)
+root.resizable(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>)
+
+
+img1=Image.open(<span class="hljs-string">"Logo.png"</span>)
+img1=img1.resize((<span class="hljs-number">170</span>,<span class="hljs-number">130</span>), Image.ANTIALIAS)
+img1 = ImageTk.PhotoImage(img1)
+
+labelimage = Label(
+    root,
+    image = img1,
+    background = <span class="hljs-string">"#ffffff"</span>,
+)
+labelimage.pack(pady=(<span class="hljs-number">40</span>,<span class="hljs-number">0</span>))
+
+labeltext = Label(
+    root,
+    text = <span class="hljs-string">"Pythonnaire"</span>,
+    font = (<span class="hljs-string">"Autography"</span>,<span class="hljs-number">30</span>,<span class="hljs-string">"bold"</span>),
+    background = <span class="hljs-string">"#ffffff"</span>,
+    foreground=<span class="hljs-string">"#FFD43B"</span>
+)
+labeltext.pack(pady=(<span class="hljs-number">0</span>,<span class="hljs-number">50</span>))
+
+
+btnStart = Button(
+    root,
+    text = <span class="hljs-string">'START'</span>,
+    height = <span class="hljs-number">2</span>,
+    width = <span class="hljs-number">8</span>,
+    border = <span class="hljs-number">0</span>,
+    background = <span class="hljs-string">"#306998"</span>,
+    foreground = <span class="hljs-string">"#FFD43B"</span>,
+    activebackground=<span class="hljs-string">"#FFD43B"</span>,
+    activeforeground=<span class="hljs-string">"#306998"</span>,
+    font = (<span class="hljs-string">"Bebas Neue"</span>,<span class="hljs-number">14</span>),
+    command = startIspressed,
+)
+btnStart.pack()
+
+lblInstruction = Label(
+    root,
+    text = <span class="hljs-string">"Read The Rules And\nClick Start Once You Are ready"</span>,
+    background = <span class="hljs-string">"#ffffff"</span>,
+    foreground=<span class="hljs-string">"#306998"</span>,
+    font = (<span class="hljs-string">"Bebas Neue"</span>,<span class="hljs-number">14</span>),
+    justify = <span class="hljs-string">"center"</span>,
+)
+lblInstruction.pack(pady=(<span class="hljs-number">30</span>,<span class="hljs-number">104</span>))
+
+lblRules = Label(
+    root,
+    text = <span class="hljs-string">"-&gt; This quiz contains 10 questions\n-&gt; Once you select a radio button that will be your final choice\n-&gt; So, think before you select"</span>,
+    width = <span class="hljs-number">100</span>,
+    font = (<span class="hljs-string">"Bebas Neue"</span>,<span class="hljs-number">14</span>),
+    background = <span class="hljs-string">"#306998"</span>,
+    foreground = <span class="hljs-string">"#FFD43B"</span>,
+)
+lblRules.pack()
+
+root.mainloop()
+</div></code></pre>
+<h3 id="command-for-running-the-app-in-linuxmac">Command for Running the App in Linux/Mac</h3>
+<pre class="hljs"><code><div>python3 Pythonnaire.py
+</div></code></pre>
+<h3 id="command-for-running-the-app-in-windows">Command for Running the App in Windows</h3>
+<ul>
+<li>You can also run the App by double clicking the Pythonnaire.py file</li>
+</ul>
+<pre class="hljs"><code><div>python Pythonnaire.py
+
+</div></code></pre>
+<h3 id="developed-by">Developed by</h3>
+<p><strong>Hamad Saqib</strong></p>
+<h3 id="seat-no">Seat No</h3>
+<p><strong>B20102045</strong></p>
+
+</body>
+</html>
